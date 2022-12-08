@@ -1,0 +1,31 @@
+<div th:fragment="info-left">
+    <div class="card card-warning">
+        <div class="card-header">
+            <h3 class="card-title">General Info</h3>
+            <div class="card-tools">
+                <button class="btn btn-tool" data-card-widget="collapse" title="Collapse"
+                        type="button">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input class="form-control" id="fullName" name="fullName"
+                       type="text" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" id="email" name="email" type="email" required>
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <select class="form-control select2" style="width: 100%;" name="role" id="role">
+                    <option value="01" selected="selected">Admin</option>
+                    <option value="02">Copywriter</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

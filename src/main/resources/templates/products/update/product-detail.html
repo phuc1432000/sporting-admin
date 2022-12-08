@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | DataTables</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/css/adminlte.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <div th:replace="components/fragments :: menu-left"></div>
+    <div class="content-wrapper">
+        <div th:replace="components/content-header-page :: content-header"></div>
+        <!-- Main content -->
+        <section class="content">
+            <form th:action="@{/product/update}" th:object="${product}" enctype="multipart/form-data" method="post">
+                <input type="text" style="display: none" name="id" id="id" class="form-control"
+                       th:value="${productDTO.data.id}">
+                <input type="text" style="display: none" name="productId" id="productId" class="form-control"
+                       th:value="${productDTO.data.productId}">
+                <input type="text" style="display: none" name="active" id="active" class="form-control"
+                       th:value="${productDTO.data.active}">
+                <input type="text" style="display: none" name="subMenuItem" id="subMenuItem" class="form-control"
+                       th:value="${productDTO.data.subMenuItem}">
+                <input type="text" style="display: none" name="footerItem" id="footerItem" class="form-control"
+                       th:value="${productDTO.data.footerItem}">
+                <input type="text" style="display: none" name="subContentProduct" id="subContentProduct" class="form-control"
+                       th:value="${productDTO.data.subContentProduct}">
+                <input type="text" style="display: none" name="subUrl" id="subUrl" class="form-control"
+                       th:value="${productDTO.data.subUrl}">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div th:replace="products/update/info-left :: info-left"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div th:replace="products/update/info-right :: info-right"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea id="summernote" name="contentProduct"
+                                      th:text="${productDTO.data.subContentProduct}"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="/product/get-all" class="btn btn-secondary">Cancel</a>
+                        <input type="submit" value="Submit" class="btn btn-success float-right">
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+    <div th:replace="components/fragments :: footer"></div>
+    <div th:replace="components/fragments :: control-sidebar"></div>
+</div>
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/js/adminlte.min.js"></script>
+<!-- Summernote -->
+<script src="/plugins/summernote/summernote-bs4.min.js"></script>
+<script>
+    $(function () {
+        // Summernote
+        $('#summernote').summernote({
+                height: 700,
+                theme: 'monokai'
+            }
+        );
+        $('#inputIntroduction').summernote({
+            height: 300
+        })
+        $('#inputShortDescription').summernote({height: 400});
+    })
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+</body>
+</html>

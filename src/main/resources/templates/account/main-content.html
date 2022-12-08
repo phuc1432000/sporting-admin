@@ -1,0 +1,45 @@
+<div th:fragment="main-content">
+    <div class="row">
+        <div class="col-12">
+            <a class="btn btn-info" href="/account/redirect-insert">Add New</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-striped" id="example1">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="account, state : ${listDto.list}">
+                    <td th:utext="${state.count}"></td>
+                    <td th:text="${account.fullName}"></td>
+                    <td><a th:href="@{/account/get-by-uuid/{id}(id=${account.accountId})}"
+                           th:text="${account.email}"></a></td>
+                    <td th:switch="${account.role}">
+                        <p th:case="01">Admin</p>
+                        <p th:case="02">Copyrightor</p>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning"
+                           th:href="@{/account/perform-lock/{id}(id=${account.accountId})}"
+                           th:switch="${account.active}">
+                            <i class="fa fa-unlock bigger-150 blue" th:case="01"></i>
+                            <i class="fa fa-lock bigger-150 blue" th:case="02"></i>
+                        </a>
+                        <a class="btn btn-danger" th:href="@{/account/delete/{id}(id=${account.accountId})}">
+                            <i class="fa fa-trash bigger-150 blue"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

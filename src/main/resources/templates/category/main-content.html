@@ -1,0 +1,40 @@
+<div th:fragment="main-content">
+    <div class="row">
+        <div class="col-12">
+            <a class="btn btn-info" href="/category/redirect-insert-page">Add New</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-striped" id="example1">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dto, state : ${listDto.list}">
+                    <td th:utext="${state.count}"></td>
+                    <td> <a th:href="@{/product/get-all/{id}(id=${dto.categoryId})}"
+                        th:text="${dto.name}"></a></td>
+                    <td>
+                        <a th:href="@{/category/get-by-uuid/{id}(id=${dto.categoryId})}" class="btn btn-info">
+                            <i class="fas fa-eye"></i>
+                        <a class="btn btn-warning"
+                           th:href="@{/category/perform-lock/{id}(id=${dto.categoryId})}"
+                           th:switch="${dto.active}">
+                            <i class="fa fa-unlock bigger-150 blue" th:case="01"></i>
+                            <i class="fa fa-lock bigger-150 blue" th:case="02"></i>
+                        </a>
+                        <a class="btn btn-danger" th:href="@{/category/delete/{id}(id=${dto.categoryId})}">
+                            <i class="fa fa-trash bigger-150 blue"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

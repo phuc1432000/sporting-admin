@@ -1,0 +1,92 @@
+<div th:fragment="menu-left-content">
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <a href="/admin/home" class="brand-link">
+            <img src="https://cdn-icons-png.flaticon.com/512/3028/3028630.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">Sporting Admin Page</span>
+        </a>
+        <div class="sidebar">
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p>
+                                Account
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/account/get-all" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List Accounts</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-address-card"></i>
+                            <p>
+                                Category
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/category/get-all" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List Category</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tree"></i>
+                            <p>
+                                Orders
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/orderDetails/getAll" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List Orders</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-baby"></i>
+                            <p>
+                                Payments
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/payment/getAll" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>List Payments</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/logout" class="nav-link">
+                            <p>
+                                Logout
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+</div>

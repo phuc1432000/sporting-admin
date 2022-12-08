@@ -1,0 +1,6 @@
+server:
+  port: 80
+
+admin:
+  host:
+    url: http://localhost:8081

@@ -1,0 +1,41 @@
+<div th:fragment="main-content">
+    <div class="row">
+        <div class="col-12">
+            <a th:href="@{/product/redirect-insert-page/{id}(id=${session.parentId})}" class="btn btn-info">Add News</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="products, state:${productDTO.list}" th:if="${products.active != '03'}">
+                    <td th:utext="${state.count}"></td>
+                    <td>
+                        <a th:href="@{/product/get-by-uuid/{id}(id=${products.productId})}"
+                           th:text="${products.name}"></a>
+                    </td>
+                    <td><img th:src="${products.img}" class="form-control" style="width:50%;height:100px"/></td>
+                    <td>
+                        <a th:switch="${products.active}"
+                           th:href="@{/product/perform-lock/{id}(id=${products.productId})}" class="btn btn-warning">
+                            <i th:case="01" class="fa fa-unlock bigger-150 blue"></i>
+                            <i th:case="02" class="fa fa-lock bigger-150 blue"></i>
+                        </a>
+                        <a th:href="@{/product/delete/{id}(id=${products.productId})}" class="btn btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

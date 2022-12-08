@@ -1,0 +1,32 @@
+<div th:fragment="main-content">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered table-striped" id="example1">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Customer</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dto, state : ${listDto.list}">
+                    <td th:utext="${state.count}"></td>
+                    <td th:text="${dto.productId}"></td>
+                    <td th:text="${dto.accountId}"></td>
+                    <td>
+                        <a class="btn btn-warning" th:switch="${dto.active}">
+                            <i class="fa fa-truck bigger-150 blue" th:case="01"></i>
+                            <i class="fa fa-check bigger-150 blue" th:case="02"></i>
+                        </a>
+                        <a class="btn btn-danger" th:href="@{/orderDetails/delete/{id}(id=${dto.orderId})}">
+                            <i class="fa fa-trash bigger-150 blue"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
