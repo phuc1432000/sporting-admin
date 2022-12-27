@@ -2,8 +2,6 @@ package com.sporting.admin.service.impl;
 
 import com.google.gson.Gson;
 import com.sporting.admin.consts.URLConstants;
-import com.sporting.admin.dto.account.AccountDTO;
-import com.sporting.admin.dto.account.AccountRequest;
 import com.sporting.admin.dto.orderDetail.OrderDetailDTO;
 import com.sporting.admin.dto.orderDetail.OrderDetailInitial;
 import com.sporting.admin.dto.orderDetail.OrderDetailRequest;
@@ -29,6 +27,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Autowired
     AccountService accountService;
+
     /**
      * @return List OrderDetailDTO
      */
@@ -84,12 +83,12 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Override
     public OrderDetailDTO delete(String uuid) {
-            String getUrl = url + URLConstants.O;
-            OrderDetailRequest request = new OrderDetailRequest();
-            request.setOrderId(uuid);
-            Gson gson = new Gson();
-            String json = gson.toJson(request);
+        String getUrl = url + URLConstants.ORDER_DETAIL_DELETE;
+        OrderDetailRequest request = new OrderDetailRequest();
+        request.setOrderId(uuid);
+        Gson gson = new Gson();
+        String json = gson.toJson(request);
         OrderDetailDTO dto = HttpOkUtils.callApiWithJsonByPost(json, getUrl, "", OrderDetailDTO.class);
-            return dto;
+        return dto;
     }
 }

@@ -9,6 +9,8 @@ public interface OrderDetailService {
     OrderDetailDTO getByUuid(String uuid);
 
     OrderDetailDTO performLock(String uuid);
+
     OrderDetailDTO create(OrderDetailInitial order);
+
     OrderDetailDTO delete(String uuid);
 }

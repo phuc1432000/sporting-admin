@@ -2,8 +2,6 @@ package com.sporting.admin.service.impl;
 
 import com.google.gson.Gson;
 import com.sporting.admin.consts.URLConstants;
-import com.sporting.admin.dto.category.CategoryDTO;
-import com.sporting.admin.dto.category.CategoryRequest;
 import com.sporting.admin.dto.payment.PaymentDTO;
 import com.sporting.admin.dto.payment.PaymentRequest;
 import com.sporting.admin.service.PaymentService;
