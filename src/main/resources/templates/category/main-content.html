@@ -1,5 +1,5 @@
 <div th:fragment="main-content">
-    <div class="row">
+    <div th:if="${session.roleId == '01'}" class="row">
         <div class="col-12">
             <a class="btn btn-info" href="/category/redirect-insert-page">Add New</a>
         </div>
@@ -11,7 +11,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Action</th>
+                    <th th:if="${session.roleId == '01'}">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -19,7 +19,7 @@
                     <td th:utext="${state.count}"></td>
                     <td> <a th:href="@{/product/get-all/{id}(id=${dto.categoryId})}"
                         th:text="${dto.name}"></a></td>
-                    <td>
+                    <td th:if="${session.roleId == '01'}">
                         <a th:href="@{/category/get-by-uuid/{id}(id=${dto.categoryId})}" class="btn btn-info">
                             <i class="fas fa-eye"></i>
                         <a class="btn btn-warning"

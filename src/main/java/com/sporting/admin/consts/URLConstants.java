@@ -29,11 +29,14 @@ public class URLConstants {
     public static String ORDER_DETAIL_GET_ALL = API + "/order-detail/get-all";
     public static String ORDER_DETAIL_GET_UUID = API + "/order-detail/get-by-uuid";
     public static String ORDER_DETAIL_PERFORM_LOCK = API + "/order-detail/perform-lock";
+    public static String ORDER_DETAIL_CREATE = API + "/order-detail/create";
 
     //Payment
     public static String PAYMENT_GET_ALL = API + "/payment/get-all";
     public static String PAYMENT_GET_UUID = API + "/payment/get-by-uuid";
     public static String PAYMENT_DELETE = API + "/payment/delete";
+
+    public static String PAYMENT_PERFORM_LOCK = API + "/payment/perform-lock";
 
     //Product
     public static String PRODUCT_GET_ALL = API + "/product/get-all";

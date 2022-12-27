@@ -1,6 +1,7 @@
 package com.sporting.admin.controller;
 
 import com.sporting.admin.consts.RedirectPageConstant;
+import com.sporting.admin.consts.RoleConstant;
 import com.sporting.admin.consts.StringConstant;
 import com.sporting.admin.consts.UrlPath;
 import com.sporting.admin.dto.payment.PaymentDTO;
@@ -54,6 +55,16 @@ public class PaymentController {
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
         service.delete(id);
+        return getAll(model, session);
+    }
+
+    @GetMapping(value = UrlPath.PAYMENT_PERFORM_LOCK)
+    public String performLockUnClock(Model model, HttpSession session, @PathVariable String id) {
+        if (session.getAttribute(StringConstant.ID) == null) {
+            session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
+            return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
+        }
+        service.performLock(id);
         return getAll(model, session);
     }
 }

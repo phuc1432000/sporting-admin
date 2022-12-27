@@ -6,8 +6,10 @@ import com.sporting.admin.dto.product.ProductDTO;
 import com.sporting.admin.dto.product.ProductInitial;
 import com.sporting.admin.dto.product.ProductRequest;
 import com.sporting.admin.service.ProductService;
+import com.sporting.admin.service.UploadFile;
 import com.sporting.admin.utils.HttpOkUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ import java.util.UUID;
 public class ProductServiceImpl implements ProductService {
     @Value("${admin.host.url}")
     String url;
+
+    @Autowired
+    UploadFile service;
 
     /**
      * @return product
@@ -57,6 +62,7 @@ public class ProductServiceImpl implements ProductService {
         String getUrl = url + URLConstants.PRODUCT_CREATE;
         info.setActive("01");
         info.setProductId(UUID.randomUUID().toString());
+        info.setImg("https://media.crystallize.com/snowball/images/262_bicycleconceptsketchspeedone.jpg");
         Gson gson = new Gson();
         String json = gson.toJson(info);
         ProductDTO dto = HttpOkUtils.callApiWithJsonByPost(json, getUrl, "", ProductDTO.class);

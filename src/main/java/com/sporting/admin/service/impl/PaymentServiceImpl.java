@@ -2,6 +2,8 @@ package com.sporting.admin.service.impl;
 
 import com.google.gson.Gson;
 import com.sporting.admin.consts.URLConstants;
+import com.sporting.admin.dto.category.CategoryDTO;
+import com.sporting.admin.dto.category.CategoryRequest;
 import com.sporting.admin.dto.payment.PaymentDTO;
 import com.sporting.admin.dto.payment.PaymentRequest;
 import com.sporting.admin.service.PaymentService;
@@ -53,6 +55,17 @@ public class PaymentServiceImpl implements PaymentService {
         Gson gson = new Gson();
         String json = gson.toJson(request);
         PaymentDTO dto = HttpOkUtils.callApiWithJsonByPost(json, getUrl, json, PaymentDTO.class);
+        return dto;
+    }
+
+    @Override
+    public PaymentDTO performLock(String uuid) {
+        String getUrl = url + URLConstants.PAYMENT_PERFORM_LOCK;
+        PaymentRequest request = new PaymentRequest();
+        request.setPaymentId(uuid);
+        Gson gson = new Gson();
+        String json = gson.toJson(request);
+        PaymentDTO dto = HttpOkUtils.callApiWithJsonByPost(json, getUrl, "", PaymentDTO.class);
         return dto;
     }
 }

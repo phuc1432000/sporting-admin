@@ -1,6 +1,7 @@
 package com.sporting.admin.dto.product;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
 
@@ -15,4 +16,5 @@ public class ProductInitial implements Serializable {
     private String categoryId;
     private String active;
     private String img;
+    private MultipartFile image;
 }

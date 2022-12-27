@@ -1,6 +1,7 @@
 package com.sporting.admin.controller;
 
 import com.sporting.admin.consts.RedirectPageConstant;
+import com.sporting.admin.consts.RoleConstant;
 import com.sporting.admin.consts.StringConstant;
 import com.sporting.admin.consts.UrlPath;
 import com.sporting.admin.dto.product.ProductDTO;
@@ -34,12 +35,13 @@ public class ProductController {
         model.addAttribute(StringConstant.TITLE_PAGE, "List Products");
         ProductDTO productDTO = service.getAll(id);
         model.addAttribute("listDto", productDTO);
+        model.addAttribute("categoryId", id);
         return "products/list-products";
     }
 
     @GetMapping(value = UrlPath.PRODUCT_GET_BY_UUID)
     public String getByUuid(Model model, HttpSession session, @PathVariable String id) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -52,7 +54,7 @@ public class ProductController {
 
     @PostMapping(value = UrlPath.PRODUCT_CREATE)
     public String insertProduct(@ModelAttribute("product") ProductInitial product, Model model, HttpSession session) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -62,7 +64,7 @@ public class ProductController {
 
     @PostMapping(value = UrlPath.PRODUCT_UPDATE)
     public String updateCompanyInfo(@ModelAttribute("product") ProductInitial product, Model model, HttpSession session) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -74,7 +76,7 @@ public class ProductController {
 
     @GetMapping(value = UrlPath.PRODUCT_PERFORM_LOCK)
     public String lockProductById(@PathVariable String id, Model model, HttpSession session) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -85,7 +87,7 @@ public class ProductController {
 
     @GetMapping(value = UrlPath.PRODUCT_DELETE)
     public String deleteProductById(@PathVariable String id, Model model, HttpSession session) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -95,13 +97,14 @@ public class ProductController {
     }
 
     @GetMapping(value = UrlPath.PRODUCT_REDIRECT_INSERT_PAGE)
-    public String redirectInsertProduct(HttpSession session, Model model) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+    public String redirectInsertProduct(HttpSession session, Model model, @PathVariable String id) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
         model.addAttribute(StringConstant.NAME_PAGE, "Product");
         model.addAttribute(StringConstant.TITLE_PAGE, "Add Products");
+        model.addAttribute("categoryId", id);
         return "products/add/main-content";
     }
 }

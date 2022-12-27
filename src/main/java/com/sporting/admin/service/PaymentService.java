@@ -8,4 +8,6 @@ public interface PaymentService {
     PaymentDTO getByUuid(String uuid);
 
     PaymentDTO delete(String uuid);
+
+    PaymentDTO performLock(String uuid);
 }

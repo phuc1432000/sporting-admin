@@ -1,9 +1,11 @@
 package com.sporting.admin.controller;
 
 import com.sporting.admin.consts.RedirectPageConstant;
+import com.sporting.admin.consts.RoleConstant;
 import com.sporting.admin.consts.StringConstant;
 import com.sporting.admin.consts.UrlPath;
 import com.sporting.admin.dto.orderDetail.OrderDetailDTO;
+import com.sporting.admin.dto.orderDetail.OrderDetailInitial;
 import com.sporting.admin.service.OrderDetailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,11 +51,24 @@ public class OrderDetailController {
 
     @GetMapping(value = UrlPath.ORDER_DETAILS_PERFORM_LOCK)
     public String performLock(Model model, HttpSession session, @PathVariable String id) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
         service.performLock(id);
+        return getAll(model, session);
+    }
+
+    @GetMapping(value = UrlPath.ORDER_DETAILS_CREATE)
+    public String create(Model model, HttpSession session, @PathVariable("productId") String productId) {
+        OrderDetailInitial orderDetail = new OrderDetailInitial();
+        orderDetail.setProductId(productId);
+        service.create(orderDetail);
+        return getAll(model, session);
+    }
+
+    @GetMapping(value = UrlPath.ORDER_DETAILS_DELETE)
+    public String delete(Model model, HttpSession session, @PathVariable String id) {
         return getAll(model, session);
     }
 }

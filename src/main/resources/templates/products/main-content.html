@@ -1,7 +1,7 @@
 <div th:fragment="main-content">
-    <div class="row">
+    <div th:if="${session.roleId == '01'}" class="row">
         <div class="col-12">
-            <a th:href="@{/product/redirect-insert-page/{id}(id=${parentId})}" class="btn btn-info">Add New</a>
+            <a th:href="@{/product/redirect-insert-page/{id}(id=${categoryId})}" class="btn btn-info">Add New</a>
         </div>
     </div>
     <div class="card">
@@ -13,7 +13,7 @@
                     <th>Name</th>
                     <th>CategoryId</th>
                     <th>Image</th>
-                    <th>Action</th>
+                    <th th:if="${session.roleId != '03'}">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,7 +25,12 @@
                     </td>
                     <td th:text="${products.categoryId}"></td>
                     <td><img th:src="${products.img}" class="form-control" style="width:50%;height:100px"/></td>
-                    <td>
+                    <td th:if="${session.roleId == '02'}">
+                        <a th:href="@{/orderDetails/create/{productId}(productId=${products.productId})}" class="btn btn-info">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </td>
+                    <td th:if="${session.roleId == '01'}">
                         <a th:href="@{/product/get-by-uuid/{id}(id=${products.productId})}" class="btn btn-info">
                             <i class="fas fa-eye"></i>
                         </a>

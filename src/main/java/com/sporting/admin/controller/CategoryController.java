@@ -1,6 +1,7 @@
 package com.sporting.admin.controller;
 
 import com.sporting.admin.consts.RedirectPageConstant;
+import com.sporting.admin.consts.RoleConstant;
 import com.sporting.admin.consts.StringConstant;
 import com.sporting.admin.consts.UrlPath;
 import com.sporting.admin.dto.category.CategoryDTO;
@@ -39,7 +40,7 @@ public class CategoryController {
 
     @GetMapping(value = UrlPath.CATEGORY_GET_BY_ID)
     public String getByUuid(Model model, HttpSession session, @PathVariable String id) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -52,7 +53,7 @@ public class CategoryController {
 
     @PostMapping(value = UrlPath.CATEGORY_CREATE)
     public String create(Model model, HttpSession session, @ModelAttribute("category") CategoryInitial dto) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -62,7 +63,7 @@ public class CategoryController {
 
     @PostMapping(value = UrlPath.CATEGORY_UPDATE)
     public String update(Model model, HttpSession session, @ModelAttribute("category") CategoryInitial dto) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -72,7 +73,7 @@ public class CategoryController {
 
     @GetMapping(value = UrlPath.CATEGORY_DELETE)
     public String delete(Model model, HttpSession session, @PathVariable String id) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -82,7 +83,7 @@ public class CategoryController {
 
     @GetMapping(value = UrlPath.CATEGORY_PERFORM_LOCK)
     public String performLock(Model model, HttpSession session, @PathVariable String id) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
@@ -92,7 +93,7 @@ public class CategoryController {
 
     @GetMapping(value = UrlPath.CATEGORY_REDIRECT_INSERT_PAGE)
     public String redirectInsertPage(Model model, HttpSession session) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }

@@ -17,10 +17,10 @@
                     <td th:text="${dto.paymentAmount}"></td>
                     <td>
                         <a class="btn btn-warning" th:switch="${dto.active}">
-                            <i class="fa fa-check bigger-150 blue" th:case="01"></i>
+                            <i class="fa fa-check bigger-150 blue" th:href="@{/payment/perform-lock/{id}(id=${dto.paymentId})}" th:case="01"></i>
                             <i class="fa fa-times bigger-150 blue" th:case="02"></i>
                         </a>
-                        <a class="btn btn-danger" th:href="@{/payment/delete/{id}(id=${dto.paymentId})}">
+                        <a th:if="${session.roleId == '01'}"class="btn btn-danger" th:href="@{/payment/delete/{id}(id=${dto.paymentId})}">
                             <i class="fa fa-trash bigger-150 blue"></i>
                         </a>
                     </td>

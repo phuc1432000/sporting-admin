@@ -23,7 +23,7 @@ public interface UrlPath {
     String PRODUCT_UPDATE = "/product/update";
     String PRODUCT_DELETE = "/product/delete/{id}";
     String PRODUCT_PERFORM_LOCK = "/product/perform-lock/{id}";
-    String PRODUCT_REDIRECT_INSERT_PAGE = "/product/redirect-insert-page";
+    String PRODUCT_REDIRECT_INSERT_PAGE = "/product/redirect-insert-page/{id}";
 
     //Cart Details
     String CART_DETAIL_GET_ALL = "/cartDetail/get-all";
@@ -43,11 +43,14 @@ public interface UrlPath {
     String ORDER_DETAILS_GET_ALL = "/orderDetails/getAll";
     String ORDER_DETAILS_GET_BY_ID = "/orderDetails/get-by-uuid/{id}";
     String ORDER_DETAILS_PERFORM_LOCK = "/orderDetails/perform-lock/{id}";
+    String ORDER_DETAILS_CREATE = "/orderDetails/create/{productId}";
+    String ORDER_DETAILS_DELETE = "/orderDetails/delete/{id}";
 
     //PaymentService
     String PAYMENT_GET_ALL = "/payment/getAll";
     String PAYMENT_GET_BY_ID = "/payment/get-by-uuid/{id}";
     String PAYMENT_DELETE = "/payment/delete/{id}";
+    String PAYMENT_PERFORM_LOCK = "/payment/perform-lock/{id}";
 
     //Upload File
     String UPLOAD_FILE = "/upload-file";

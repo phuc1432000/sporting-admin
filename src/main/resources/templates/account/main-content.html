@@ -24,7 +24,8 @@
                            th:text="${account.email}"></a></td>
                     <td th:switch="${account.role}">
                         <p th:case="01">Admin</p>
-                        <p th:case="02">Copyrightor</p>
+                        <p th:case="02">Customer</p>
+                        <p th:case="03">Shipper</p>
                     </td>
                     <td>
                         <a class="btn btn-warning"

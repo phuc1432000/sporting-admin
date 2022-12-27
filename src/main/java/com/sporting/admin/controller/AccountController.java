@@ -45,7 +45,7 @@ public class AccountController {
 
     @GetMapping(value = UrlPath.ACCOUNT_GET_ALL)
     public String getAllAccounts(Model model, HttpSession session) {
-        if (session.getAttribute(StringConstant.ID) == null) {
+        if (session.getAttribute(StringConstant.ID) == null || !session.getAttribute(RoleConstant.ROLE_ID).equals(RoleConstant.ROLE_ADMIN)) {
             session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
             return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
         }
