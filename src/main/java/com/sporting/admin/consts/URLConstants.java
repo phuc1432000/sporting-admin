@@ -30,6 +30,7 @@ public class URLConstants {
     public static String ORDER_DETAIL_GET_UUID = API + "/order-detail/get-by-uuid";
     public static String ORDER_DETAIL_PERFORM_LOCK = API + "/order-detail/perform-lock";
     public static String ORDER_DETAIL_CREATE = API + "/order-detail/create";
+    public static String ORDER_DETAIL_DELETE = API + "/order-detail/delete";
 
     //Payment
     public static String PAYMENT_GET_ALL = API + "/payment/get-all";

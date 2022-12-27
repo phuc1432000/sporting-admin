@@ -1,7 +1,6 @@
 package com.sporting.admin.controller;
 
 import com.sporting.admin.consts.RedirectPageConstant;
-import com.sporting.admin.consts.RoleConstant;
 import com.sporting.admin.consts.StringConstant;
 import com.sporting.admin.consts.UrlPath;
 import com.sporting.admin.dto.payment.PaymentDTO;

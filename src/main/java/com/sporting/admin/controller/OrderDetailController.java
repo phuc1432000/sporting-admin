@@ -69,6 +69,11 @@ public class OrderDetailController {
 
     @GetMapping(value = UrlPath.ORDER_DETAILS_DELETE)
     public String delete(Model model, HttpSession session, @PathVariable String id) {
+        if (session.getAttribute(StringConstant.ID) == null) {
+            session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
+            return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
+        }
+        OrderDetailDTO dto = service.delete(id);
         return getAll(model, session);
     }
 }
