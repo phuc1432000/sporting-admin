@@ -27,15 +27,15 @@ public class CategoryController {
 
     @GetMapping(value = UrlPath.CATEGORY_GET_ALL)
     public String getAll(Model model, HttpSession session) {
-        if (session.getAttribute(StringConstant.ID) == null) {
-            session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
-            return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
-        }
-        CategoryDTO dto = service.getAll();
-        model.addAttribute("listDto", dto);
-        model.addAttribute(StringConstant.NAME_PAGE, "Category");
-        model.addAttribute(StringConstant.TITLE_PAGE, "List Category");
-        return "category/list-category";
+       if(session.getAttribute(StringConstant.ID) == null){
+           session.setAttribute(StringConstant.ERROR_MESSAGE_KEY, StringConstant.ACCESS_DENIED_MESSAGE_VALUE);
+           return RedirectPageConstant.REDIRECT_LOGIN_PAGE;
+       }
+       CategoryDTO dto = service.getAll();
+       model.addAttribute("listDto",dto);
+       model.addAttribute(StringConstant.NAME_PAGE, "Category");
+       model.addAttribute(StringConstant.TITLE_PAGE, "List Category");
+       return "category/list-category";
     }
 
     @GetMapping(value = UrlPath.CATEGORY_GET_BY_ID)
